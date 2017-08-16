@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body bgcolor="#808080">
+<center>
+<font face="verdana">
+    <h1><a href="{{ url_for('mostrar_todo') }}" style=”text-decoration:none;”>LIBRERIA PETRA</a></h1> </font>
+<hr/>
+
+    <font face="verdana"> <h2>Libros (<a href="{{ url_for('nuevo') }}" style=”text-decoration:none;”>Agregar Libros</a>)</h2></font>
+    <form action="http://127.0.0.1:5000/eliminar/" method="post">
+<table width="100%" border="1" cellpadding="0" cellspacing="0" bordercolor="#000000">
+    <thead>
+    <tr>
+        <th><font face="verdana"> Codigo </font> </th>
+        <th><font face="verdana"> Nombre</font></th>
+        <th><font face="verdana"> Autor </font></th>
+        <th><font face="verdana"> Materia</font></th>
+        <th><font face="verdana"> Cantidad</font></th>
+        <th><font face="verdana"> Precio </font></th>
+        <th><font face="verdana"> Eliminar </font></th>
+
+    </tr>
+    </thead>
+    <tbody>
+    {% for libro in libros %}
+    <tr>
+        <td><font face="verdana"> {{ libro.id }} </font> </td>
+        <td><font face="verdana"> {{ libro.nombre }} </font></td>
+        <td><font face="verdana"> {{ libro.autor }} </font></td>
+        <td><font face="verdana"> {{ libro.materia }} </font></td>
+        <td><font face="verdana"> {{ libro.cantidad }} </font></td>
+        <td><font face="verdana"> {{ libro.precio }} </font></td>
+        <td> <input type="checkbox" id="{{libro.id}}" name="id" value = "{{libro.id}}"></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+     <input type ='submit' value="Borrar">
+    </form>
+ <form action="http://127.0.0.1:5000/comprar/" method="post">
+  <h3>
+      <font face="verdana">Vender Libro</font>
+  </h3>
+   <label>Codigo del Libro</label>
+  <input type="text" size="2" name ="id">
+  <input type="submit" value="Vender">
+  </form>
+    {%- for categoria, mensaje in get_flashed_messages(with_categories=true)  %}
+<div class="alert alert-danger">
+    {{ mensaje }}
+</div>
+{%- endfor %}
+</center>
+
+</body>
+</html>
+
